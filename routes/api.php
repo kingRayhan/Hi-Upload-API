@@ -14,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
-Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
-Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::get('auth/user', [\App\Http\Controllers\AuthController::class, 'user']);
+Route::post('auth/login', [\App\Http\Controllers\AuthController::class, 'login']);
+Route::post('auth/create-token', [\App\Http\Controllers\AuthController::class, 'createToken']);
+Route::post('auth/clear-tokens', [\App\Http\Controllers\AuthController::class, 'clearTokens']);
+Route::post('auth/my-tokens', [\App\Http\Controllers\AuthController::class, 'myTokens']);
+Route::post('auth/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+
+
+Route::get('files', [\App\Http\Controllers\FileController::class, 'index']);
